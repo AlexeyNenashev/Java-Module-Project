@@ -15,12 +15,16 @@ public class Main {
             autoName = scanner.next();
             while (true) {
                 System.out.println("Enter velocity of auto # " + i + ":");
-                autoVelocity = scanner.nextInt();
-                if (autoVelocity < 0 || autoVelocity > 250) {
-                    System.out.println("Wrong velocity.");
-                } else {
-                    break;
+                try {
+                    autoVelocity = scanner.nextInt();
+                    if (autoVelocity >= 0 && autoVelocity <= 250) {
+                        break;
+                    }
                 }
+                catch (java.util.InputMismatchException e) {
+                    scanner.next();
+                }
+                System.out.println("Wrong velocity.");
             }
             gonka.findLeader(new Automobil(autoName, autoVelocity));
         }
